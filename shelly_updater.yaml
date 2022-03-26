@@ -1,0 +1,30 @@
+blueprint:
+  name: Shelly Auto-Updater
+  description: Check for updates and install if available
+  domain: automation
+  input:
+    updater_sensor:
+      name: Shelly
+      description: Shelly for which this updater works
+      selector:
+        entity:
+          domain: binary_sensor
+          device_class: motion # TODO
+    ota_update:
+      name: OTA
+      description: update # TODO
+      selector:
+          entity: button
+            domain: light
+
+  trigger:
+    - platform: time
+      at: '04:00:00'
+  condition:
+    - condition: state
+      entity_id: !input updater_sensor
+      state: 'on'
+  action:
+      entity_id: !input ota_update
+      type: press
+  mode: single
