@@ -15,7 +15,6 @@ blueprint:
       description: update # TODO
       selector:
           entity: button
-            domain: light
 
   trigger:
     - platform: time
